@@ -17,9 +17,9 @@ public class game extends Canvas implements Runnable{
 	public static JFrame frame;
 	private Thread thread;
 	private boolean isRunning = true;
-	private final int WIDTH = 160;
-	private final int HEIGHT = 120;
-	private final int SCALE = 4;
+	private final int WIDTH = 240;
+	private final int HEIGHT = 160;
+	private final int SCALE = 3;
 
     private BufferedImage image;
 	
@@ -87,9 +87,8 @@ public class game extends Canvas implements Runnable{
 		g.fillRect(0, 0,WIDTH,HEIGHT);
 
 		g.setColor(Color.GREEN);
-		g.fillOval(0, 40, 50, 50);
 		g.setFont(new Font("Arial",Font.BOLD,20));
-		g.drawString("Jane", 90, 90);
+		g.drawString("Jane", 19, 19);
 		g = bs.getDrawGraphics();
         g = bs.getDrawGraphics();
         g.drawImage(image, 0,0,WIDTH*SCALE,HEIGHT*SCALE,null);
