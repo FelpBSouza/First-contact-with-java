@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.awt.Graphics2D;
 
 import javax.swing.JFrame;
 
@@ -24,7 +25,7 @@ public class game extends Canvas implements Runnable{
 
 	private Spritesheet sheet;
 	private BufferedImage player;
-	private int x = 0;
+	/*private int x = 0;*/
 	
 	public game() {
 		sheet = new Spritesheet ("/res/Spritesheet.png");
@@ -75,7 +76,7 @@ public class game extends Canvas implements Runnable{
 	}
 	
 	public void tick() {
-		x++;
+		/*x++;*/
 	}
 	
 	public void render() {
@@ -93,7 +94,9 @@ public class game extends Canvas implements Runnable{
 
 		/*Renderização do jogo */
 
-		g.drawImage(player,x,20,null);
+		Graphics2D g2 = (Graphics2D) g; //cast
+		g2.rotate(Math.toRadians(90),90+8,90);
+		g2.drawImage(player,20,20,null);
 
 
 
