@@ -24,12 +24,19 @@ public class game extends Canvas implements Runnable{
     private BufferedImage image;
 
 	private Spritesheet sheet;
-	private BufferedImage player;
+	private BufferedImage [] player;
 	/*private int x = 0;*/
+	private int frames = 0;
+	private int maxFrames = 20;
+	private int curAnimation = 0, maxAnimation = 2;
+
 	
 	public game() {
-		sheet = new Spritesheet ("/res/Spritesheet.png");
-		player = sheet.getSprite(0, 0, 16, 16);
+		sheet = new Spritesheet ("/res/21.png");
+		player = new BufferedImage[2];
+		player[0] = sheet.getSprite(0, 0, 100, 160);
+		player[1] = sheet.getSprite(16, 0, 16, 16);
+
 		setPreferredSize(new Dimension(WIDTH*SCALE,HEIGHT*SCALE));
 		initFrame();
         image = new BufferedImage( WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
@@ -76,7 +83,30 @@ public class game extends Canvas implements Runnable{
 	}
 	
 	public void tick() {
+		frames++;
 		/*x++;*/
+
+		if(frames > maxFrames){
+			frames = 0;
+			curAnimation++;
+			
+			if(curAnimation >= maxAnimation){
+
+				curAnimation = 0;
+
+
+
+			}
+		}
+
+
+
+
+
+
+
+
+
 	}
 	
 	public void render() {
@@ -95,8 +125,10 @@ public class game extends Canvas implements Runnable{
 		/*Renderização do jogo */
 
 		Graphics2D g2 = (Graphics2D) g; //cast
-		g2.rotate(Math.toRadians(90),90+8,90);
-		g2.drawImage(player,20,20,null);
+		g2.setColor(new Color(0,0,0,100));
+		g2.fillRect(0, 0,WIDTH,HEIGHT);
+		
+		g2.drawImage(player[curAnimation],20,20,null);
 
 
 
