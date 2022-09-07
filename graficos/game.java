@@ -3,7 +3,6 @@ package graficos;
 import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -19,11 +18,17 @@ public class game extends Canvas implements Runnable{
 	private boolean isRunning = true;
 	private final int WIDTH = 240;
 	private final int HEIGHT = 160;
-	private final int SCALE = 3;
+	private final int SCALE = 4;
 
     private BufferedImage image;
+
+	private Spritesheet sheet;
+	private BufferedImage player;
+	private int x = 0;
 	
 	public game() {
+		sheet = new Spritesheet ("/res/Spritesheet.png");
+		player = sheet.getSprite(0, 0, 16, 16);
 		setPreferredSize(new Dimension(WIDTH*SCALE,HEIGHT*SCALE));
 		initFrame();
         image = new BufferedImage( WIDTH,HEIGHT,BufferedImage.TYPE_INT_RGB);
@@ -70,8 +75,7 @@ public class game extends Canvas implements Runnable{
 	}
 	
 	public void tick() {
-		
-		
+		x++;
 	}
 	
 	public void render() {
@@ -86,13 +90,18 @@ public class game extends Canvas implements Runnable{
 		g.setColor(new Color(255,0,0));
 		g.fillRect(0, 0,WIDTH,HEIGHT);
 
-		g.setColor(Color.GREEN);
-		g.setFont(new Font("Arial",Font.BOLD,20));
-		g.drawString("Jane", 19, 19);
-		g = bs.getDrawGraphics();
+
+		/*Renderização do jogo */
+
+		g.drawImage(player,x,20,null);
+
+
+
+		/* */
+
+		g.dispose();/*limpar dados da imagem */
         g = bs.getDrawGraphics();
         g.drawImage(image, 0,0,WIDTH*SCALE,HEIGHT*SCALE,null);
-
 		bs.show();
 		
 		
